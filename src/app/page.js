@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import CategoryFilter from "../components/CategoryFilter";
 import ActivityCard from "../components/ActivityCard";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
   const searchParams = useSearchParams();
@@ -140,11 +141,23 @@ export default function Home() {
           onCategorySelect={handleCategoryChange}
         />
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {filteredDataSet.map((item) => (
-          <ActivityCard key={item.id} activity={item} />
-        ))}
-      </div>
+      <motion.div
+        layout
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+      >
+        <AnimatePresence>
+          {filteredDataSet.map((item) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <ActivityCard activity={item} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
     </main>
   );
 }

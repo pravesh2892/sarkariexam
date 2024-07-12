@@ -1,8 +1,15 @@
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const ActivityCard = ({ activity }) => {
   return (
-    <div className="bg-white shadow-md rounded-lg overflow-hidden transition-transform hover:scale-105 hover:shadow-lg">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      whileHover={{ scale: 1.05 }}
+      className="bg-white shadow-md rounded-lg overflow-hidden"
+    >
       <div className="relative h-48 w-full">
         <Image
           src={activity.image}
@@ -21,7 +28,7 @@ const ActivityCard = ({ activity }) => {
           <span className="text-gray-500 text-sm">{activity.duration}</span>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
