@@ -1,6 +1,6 @@
 import { Roboto } from "next/font/google";
 import "./globals.css";
-import { CiSearch } from "react-icons/ci";
+import SearchBar from "../components/SearchBar";
 
 const roboto = Roboto({
   weight: ["400", "700"],
@@ -20,17 +20,7 @@ export default function RootLayout({ children }) {
         <header className="bg-[#FFFFFF] text-black p-4 mb-6 shadow-[0px_3px_4px_0px_#EAEAEA78]">
           <div className="container mx-auto flex justify-between items-center">
             <h1 className="text-2xl font-bold">Sarkariexam360</h1>
-            <div className="mt-2 relative mr-4">
-              <input
-                type="text"
-                placeholder="Search..."
-                className="w-full pl-8 pr-3 py-1 text-sm border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
-              />
-              <CiSearch
-                className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400"
-                size={18}
-              />
-            </div>
+            <SearchBar />
           </div>
         </header>
         <main className="container mx-auto px-4">{children}</main>

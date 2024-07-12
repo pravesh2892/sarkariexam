@@ -101,6 +101,7 @@ export default function Home() {
     if (search) {
       handleSearchQuery(search);
     } else {
+      setSearchResults([]);
       setFilteredDataSet(dataSet);
     }
   }, [searchParams, dataSet]);
