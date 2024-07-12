@@ -3,6 +3,8 @@
 ## Description
 
 Activity Finder is a React-based web application that allows users to search and filter through various activities. It provides a simple and intuitive interface for discovering different hobbies and interests across categories like Fitness, Art, Music, and Culinary arts.
+![image](https://github.com/user-attachments/assets/9004ab2e-584b-464e-80ca-91d18a8aeb54)
+
 
 ## Features
 
@@ -30,6 +32,7 @@ Activity Finder is a React-based web application that allows users to search and
 - `src/app/layout.js`: Root layout component for the application.
 - `src/components/SearchBar.js`: Component for the search functionality.
 - `src/components/CategoryFilter.js`: Component for category filtering.
+- `src/component/ActivityCard.js` : component for the showing cards
 
 ## Usage
 
