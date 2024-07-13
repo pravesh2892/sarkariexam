@@ -1,10 +1,18 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { CiSearch } from "react-icons/ci";
 
 export default function SearchBar() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SearchBarContent />
+    </Suspense>
+  );
+}
+
+function SearchBarContent() {
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();

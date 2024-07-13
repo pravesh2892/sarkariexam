@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import CategoryFilter from "../components/CategoryFilter";
 import ActivityCard from "../components/ActivityCard";
@@ -97,6 +97,24 @@ export default function Home() {
   const [filteredDataSet, setFilteredDataSet] = useState(dataSet);
   const categories = ["All", "Fitness", "Art", "Music", "Culinary"];
 
+  const handleSearchQuery = useCallback(
+    (query) => {
+      if (query.trim() === "") {
+        setSearchResults([]);
+        setFilteredDataSet(dataSet);
+      } else {
+        const results = dataSet.filter(
+          (item) =>
+            item.name.toLowerCase().includes(query.toLowerCase()) ||
+            item.description.toLowerCase().includes(query.toLowerCase())
+        );
+        setSearchResults(results);
+        setFilteredDataSet(results);
+      }
+    },
+    [dataSet]
+  );
+
   useEffect(() => {
     const search = searchParams.get("search");
     if (search) {
@@ -105,22 +123,7 @@ export default function Home() {
       setSearchResults([]);
       setFilteredDataSet(dataSet);
     }
-  }, [searchParams, dataSet]);
-
-  const handleSearchQuery = (query) => {
-    if (query.trim() === "") {
-      setSearchResults([]);
-      setFilteredDataSet(dataSet);
-    } else {
-      const results = dataSet.filter(
-        (item) =>
-          item.name.toLowerCase().includes(query.toLowerCase()) ||
-          item.description.toLowerCase().includes(query.toLowerCase())
-      );
-      setSearchResults(results);
-      setFilteredDataSet(results);
-    }
-  };
+  }, [searchParams, dataSet, handleSearchQuery]);
 
   const handleCategoryChange = (category) => {
     if (category === "All") {
